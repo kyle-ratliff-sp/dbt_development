@@ -30,7 +30,7 @@
         {% if dry_run %}
             {{ log(query, info=True) }}
         {% else %}
-            {{ log('Dropping object with command: ' ~ query, info=True) }}
+            {{ log('Creating object with command: ' ~ query, info=True) }}
             {% do run_query(query) %} 
         {% endif %}       
     {% endfor %}
