@@ -2,11 +2,8 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-<<<<<<< HEAD
-name: 'my_new_project'
-=======
+
 name: 'sandbox_kyle_ratliff'
->>>>>>> 3b0ca0d82483a8506ad3d822a9daa9382c05c1d5
 version: '1.0.0'
 config-version: 2
 
@@ -39,13 +36,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 # continue to be built as views. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 
-<<<<<<< HEAD
 models:
-  my_new_project:
+  sandbox_kyle_ratliff:
     # Applies to all files under models/example/
     example:
       +materialized: table
-=======
 #models:
 #  jaffle_shop:
 #    # Applies to all files under models/example/
@@ -58,4 +53,3 @@ models:
 #  stg_salesforce:
 #      example:
 #        +materialized: table
->>>>>>> 3b0ca0d82483a8506ad3d822a9daa9382c05c1d5
