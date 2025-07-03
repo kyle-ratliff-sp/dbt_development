@@ -1,4 +1,4 @@
-   {% macro inserttable_from_new_differential(target_table, target_schema, primary_key, project=target.project, dry_run=True) %}
+   {% macro inserttable_from_new_differential(target_table, target_schema, project=target.project, dry_run=True, primary_key="id") %}
     
     {% set get_add_column_commands_query %}
     SELECT 
@@ -26,5 +26,9 @@
             {% do run_query(query) %} 
         {% endif %}       
     {% endfor %}
-    
+
+    {% set next_macro_arg = "updatetable_from_new_differential" %}
+    {{ log('Attempting to execute next stage of the merging process: ' ~ next_macro_arg, info=True) }}
+    {{ execute_next_merging_macro(next_macro=next_macro_arg, target_table=target_table, target_schema=target_schema, project=project, dry_run=dry_run) }}
+
 {% endmacro %} 

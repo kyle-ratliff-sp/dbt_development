@@ -1,4 +1,4 @@
-{% macro updatetable_from_new_differential(target_table, target_schema, primary_key, project=target.project, dry_run=True) %}
+{% macro updatetable_from_new_differential(target_table, target_schema, project=target.project, dry_run=True, primary_key="id") %}
     
     {% set get_add_column_commands_query %}
 SELECT 
@@ -26,5 +26,5 @@ where t.table_schema = '{{target_schema}}'
             {% do run_query(query) %} 
         {% endif %}       
     {% endfor %}
-    
+    {{ log("Completed the merging process for table and schema " ~ target_schema ~ "." ~ target_table , info=True) }}
 {% endmacro %} 
