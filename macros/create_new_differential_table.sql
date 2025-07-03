@@ -48,23 +48,8 @@
         {% endif %}       
     {% endfor %}
 
-
-    {% if dry_run %}
-        {{ log('Since the Dry Run parameter is set to ' ~ dry_run ~ ' then do not proceed to next macro.', info=True) }}
-    {% else %}
-        {{ log('Since the Dry Run parameter is set to ' ~ dry_run ~ ' then proceed to add_columns_to_table.', info=True) }}
-        {#- Define the arguments to pass to the add_columns_to_table macro -#}
-        {% set arg_target_table = target_table %}
-        {% set arg_target_schema = target_schema %}
-        {% set arg_project = project %}
-        {% set arg_dry_run = dry_run %}
-        {{ log('Printing arg_target_table: ' ~ arg_target_table, info=True) }}
-        {{ log('Printing arg_target_schema: ' ~ arg_target_schema, info=True) }}
-        {{ log('Printing arg_targearg_projectt_table: ' ~ arg_project, info=True) }}
-        {{ log('Printing arg_dry_run: ' ~ arg_dry_run, info=True) }}
-    {% endif %}
-
-  {#- Call the child macro with arguments -#}
-  {#-{{ child_macro_with_args(arg1_value, arg2_value) }}-#}
+    {% set next_macro_arg = "copy_non_string_schema_to_new_differential" %}
+    {{ log('Attempting to execute next stage of the merging process: ' ~ next_macro_arg, info=True) }}
+    {{ execute_next_merging_macro(next_macro=next_macro_arg, target_table=target_table, target_schema=target_schema, project=project, dry_run=dry_run) }}
     
 {% endmacro %} 
